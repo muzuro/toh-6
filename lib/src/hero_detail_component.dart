@@ -13,7 +13,7 @@ import 'hero_service.dart';
   styleUrls: const ['hero_detail_component.css'],
   directives: const [CORE_DIRECTIVES, formDirectives],
 )
-class HeroDetailComponent implements OnInit {
+class HeroDetailComponent implements OnInit, CanDeactivate {
   Hero hero;
   final HeroService _heroService;
   final RouteParams _routeParams;
@@ -33,4 +33,9 @@ class HeroDetailComponent implements OnInit {
   }
 
   void goBack() => _location.back();
+  @override
+  routerCanDeactivate(ComponentInstruction nextInstruction, ComponentInstruction prevInstruction) {
+    print("pressed back");
+    return false;
+  }
 }
